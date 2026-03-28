@@ -1,27 +1,35 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { useState } from "react";
 
 const Register = () => {
+  const { handleRegister, loading } = useAuth();
 
-    const handleSubmit=async(e)=>{
-        e.preventDefault()
-    }
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleRegister({username,email,password})
+  };
+  if(loading){
+    return <main><h1>Loading......</h1></main>
+  }
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
-        
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
           Register
         </h1>
 
         <form className="space-y-5" onSubmit={handleSubmit}>
-          
           {/* Username */}
           <div>
             <label className="block text-gray-700 mb-1">Username</label>
             <input
+              onChange={(e)=>{setUsername(e.target.value)}}
               type="text"
               name="username"
               placeholder="Enter username"
@@ -33,6 +41,7 @@ const Register = () => {
           <div>
             <label className="block text-gray-700 mb-1">Email</label>
             <input
+              onChange={(e)=>{setEmail(e.target.value)}}
               type="email"
               name="email"
               placeholder="Enter email address"
@@ -44,6 +53,7 @@ const Register = () => {
           <div>
             <label className="block text-gray-700 mb-1">Password</label>
             <input
+              onChange={(e)=>{setPassword(e.target.value)}}
               type="password"
               name="password"
               placeholder="Enter your password"
@@ -63,11 +73,13 @@ const Register = () => {
         {/* Extra */}
         <p className="text-sm text-center text-gray-600 mt-4">
           Already have an account?{" "}
-          <Link to={"/login"} className="text-blue-500 cursor-pointer hover:underline">
+          <Link
+            to={"/login"}
+            className="text-blue-500 cursor-pointer hover:underline"
+          >
             Login
           </Link>
         </p>
-
       </div>
     </main>
   );

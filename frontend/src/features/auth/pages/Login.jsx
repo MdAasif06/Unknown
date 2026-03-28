@@ -1,9 +1,21 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth.js";
+import { useState } from "react";
 
 const Login = () => {
+  const { loading, handleLogin } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await handleLogin({ email, password });
+
   };
+  if(loading){
+    return <main><h1>Loading...</h1></main>
+  }
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -17,6 +29,9 @@ const Login = () => {
           <div>
             <label className="block text-gray-700 mb-1">Email</label>
             <input
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               type="email"
               name="email"
               placeholder="Enter email address"
@@ -28,6 +43,9 @@ const Login = () => {
           <div>
             <label className="block text-gray-700 mb-1">Password</label>
             <input
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               type="password"
               name="password"
               placeholder="Enter your password"
