@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
 const Register = () => {
+
+    const handleSubmit=async(e)=>{
+        e.preventDefault()
+    }
+
+
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
@@ -9,7 +16,7 @@ const Register = () => {
           Register
         </h1>
 
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleSubmit}>
           
           {/* Username */}
           <div>
@@ -47,7 +54,7 @@ const Register = () => {
           {/* Button */}
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200 font-semibold"
+            className="cursor-pointer w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all duration-300 ease-in-out transform active:scale-105 font-semibold"
           >
             Register
           </button>
