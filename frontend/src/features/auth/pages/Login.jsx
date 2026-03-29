@@ -1,16 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.js";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const { loading, handleLogin } = useAuth();
+  const navigate=useNavigate()
+  const { loading, handleLogin,user } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
     await handleLogin({ email, password });
+    toast.success("Login successful ");
+    if (user) {
+    return <navigate to="/" />;
+  }
+    } catch (error) {
+      console.log("Frontend Error:", error);
+       toast.error(error?.message || "Invalid email or password ❌");
+    }
 
   };
   if(loading){

@@ -1,15 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { authContext } from "../context/authContext";
 import {
   registerUser,
   loginUser,
   logoutUser,
-  getUsers,
 } from "../services/auth.api.js";
 
 export const useAuth = () => {
   const context = useContext(authContext);
   const { user, setUser, loading, setLoading } = context;
+
+  
 
   const handleLogin = async ({ email, password }) => {
     try {
