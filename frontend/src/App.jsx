@@ -1,4 +1,4 @@
-import AppRoute from "./routes/appRoute";
+import AppRoute from "./routes/AppRoute";
 import { AuthProvider } from "./features/auth/context/authContext";
 import { Toaster } from "react-hot-toast";
 const App = () => {

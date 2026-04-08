@@ -1,32 +1,39 @@
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const navigate=useNavigate()
-  const { loading, handleLogin,user } = useAuth();
+  const navigate = useNavigate();
+  const { loading, handleLogin, user } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //  Hook always top
+  useEffect(() => {
+  if (user) {
+    navigate("/");
+  }
+}, [user, navigate]); // correct
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-    await handleLogin({ email, password });
-    toast.success("Login successful ");
-    if (user) {
-    return <navigate to="/" />;
-  }
+      await handleLogin({ email, password });
+      toast.success("Login successful ");
     } catch (error) {
       console.log("Frontend Error:", error);
-       toast.error(error?.message || "Invalid email or password ❌");
+      toast.error(error?.message || "Invalid email or password ❌");
     }
-
   };
-  if(loading){
-    return <main><h1>Loading...</h1></main>
+  if (loading) {
+    return (
+      <main>
+        <h1>Loading...</h1>
+      </main>
+    );
   }
+  
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-100">
