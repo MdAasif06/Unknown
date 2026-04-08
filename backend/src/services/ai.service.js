@@ -84,7 +84,7 @@ FORMAT:
 
   // 🔹 get raw text
   const text = res?.choices?.[0]?.message?.content || "";
-  console.log("RAW 👉", text);
+  // console.log("RAW 👉", text);
 
   // 🔹 remove markdown if present
   const cleaned = text
@@ -92,13 +92,13 @@ FORMAT:
     .replace(/```/g, "")
     .trim();
 
-  console.log("CLEANED 👉", cleaned);
+  // console.log("CLEANED 👉", cleaned);
 
   // 🔹 extract JSON part only (important fix)
   const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
 
   if (!jsonMatch) {
-    console.log("❌ No JSON found");
+    console.log(" No JSON found");
     return null;
   }
 
@@ -108,7 +108,7 @@ FORMAT:
   try {
     parsed = JSON.parse(jsonMatch[0]);
   } catch (err) {
-    console.error("❌ JSON Parse Error:", err);
+    console.error(" JSON Parse Error:", err);
     return null;
   }
 
@@ -116,7 +116,7 @@ FORMAT:
   const validated = interviewReportSchema.safeParse(parsed);
 
   if (!validated.success) {
-    console.log("❌ Schema error:", validated.error.format());
+    console.log("Schema error:", validated.error.format());
     return null;
   }
 

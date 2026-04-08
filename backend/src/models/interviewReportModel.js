@@ -92,12 +92,12 @@ const prepationPlanSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Day is required"],
   },
-  foucus: {
+  focus: {
     type: String,
     required: [true, "focus is required"],
   },
   tasks: {
-    type: String,
+    type: [String],
     required: [true, "task is required"],
   },
 });
@@ -112,14 +112,21 @@ const interviewReportSchema = new mongoose.Schema(
       type: String,
     },
     selfDescription: {
+      type: String,
+    },
+    matchScore: {
       type: Number,
       min: 0,
       max: 100,
     },
     technicalQuestions: [technicalQuestionSchema],
-    behaviourQuestions: [behavioralQuestionsSchema],
+    behavioralQuestions: [behavioralQuestionsSchema],
     skillGaps: [skillGapSchema],
-    prepationPlan: [prepationPlanSchema],
+    preparationPlan: [prepationPlanSchema],
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
   },
   { timestamps: true },
 );

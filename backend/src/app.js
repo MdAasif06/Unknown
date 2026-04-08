@@ -1,6 +1,7 @@
 import express from "express"
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.route.js";
+import interviewRouter from "./routes/interviewRoutes.js";
 import cors from "cors"
 const app=express()
 
@@ -22,6 +23,7 @@ app.get("/",(req,res)=>{
 
 // ruquire all routes here
 app.use("/api/auth",authRouter)
+app.use("/api/interview",interviewRouter)
 
 
 
