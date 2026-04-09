@@ -3,6 +3,7 @@ import Login from "../features/auth/pages/Login";
 import Register from "../features/auth/pages/Register";
 // import Home from "../features/auth/pages/Home";
 import HomeInterview from "../features/interview/pages/HomeInterview";
+import InterviewDashboard from "../features/interview/pages/InterviewDashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import About from "../features/auth/pages/About";
 import Contact from "../features/auth/pages/Contact";
@@ -13,6 +14,7 @@ const AppRoute = () => {
     <Routes>
       <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
        <Route path="/" element={<HomeInterview />} />
+       <Route path="/interview/:interviewId" element={<InterviewDashboard />} />
        <Route path="/about" element={<About />} />
        <Route path="/contact" element={<Contact />} />
       </Route>
