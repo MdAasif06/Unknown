@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { string } from "zod";
 
 /**
  * - job description schema :string
@@ -126,6 +127,10 @@ const interviewReportSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
+    },
+    title: {
+      type: String,
+      required: [true, "Job title is required"],
     },
   },
   { timestamps: true },

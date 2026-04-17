@@ -2,7 +2,7 @@ import React from "react";
 
 const HomeInterview = () => {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-indigo-100 via-white to-purple-100 flex items-center justify-center p-6">
+    <main className="min-h-screen bg-linear-to-br from-indigo-100 via-white to-purple-100 flex items-center justify-center p-6">
       
       <div className="w-full max-w-6xl grid md:grid-cols-2 gap-6 bg-white/70 backdrop-blur-lg shadow-2xl rounded-3xl p-6 border border-gray-200">
         
@@ -54,8 +54,8 @@ const HomeInterview = () => {
           </div>
 
           {/* Button */}
-          <button className="mt-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-2xl font-semibold text-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
-            🚀 Generate Interview Report
+          <button className="mt-4 bg-linear-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-2xl font-semibold text-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
+           Generate Interview Report
           </button>
         </div>
       </div>

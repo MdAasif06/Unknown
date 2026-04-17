@@ -114,7 +114,7 @@ const Interview = () => {
                 onClick={() => setActiveTab(tab.key)}
                 className={`w-full rounded-xl px-3 py-2 text-left text-sm font-semibold transition ${
                   activeTab === tab.key
-                    ? "bg-gradient-to-r from-cyan-500 to-teal-500 text-slate-950 shadow-lg shadow-cyan-500/20"
+                    ? "bg-linear-to-r from-cyan-500 to-teal-500 text-slate-950 shadow-lg shadow-cyan-500/20"
                     : "bg-slate-800/60 text-slate-200 hover:bg-slate-700/70"
                 }`}
               >
@@ -149,7 +149,7 @@ const Interview = () => {
               {technicalQuestions.map((q, i) => (
                 <article
                   key={i}
-                  className="group rounded-2xl border border-slate-700/70 bg-gradient-to-br from-slate-800/90 to-slate-900/90 p-5 transition hover:border-cyan-400/40 hover:shadow-lg hover:shadow-cyan-500/10"
+                  className="group rounded-2xl border border-slate-700/70 bg-linear-to-br from-slate-800/90 to-slate-900/90 p-5 transition hover:border-cyan-400/40 hover:shadow-lg hover:shadow-cyan-500/10"
                 >
                   <span className="rounded-md bg-cyan-500/15 px-2 py-0.5 text-xs font-bold text-cyan-300">
                     Q{i + 1}
@@ -171,7 +171,7 @@ const Interview = () => {
               {behavioralQuestions.map((q, i) => (
                 <article
                   key={i}
-                  className="group rounded-2xl border border-slate-700/70 bg-gradient-to-br from-slate-800/90 to-slate-900/90 p-5 transition hover:border-fuchsia-400/40 hover:shadow-lg hover:shadow-fuchsia-500/10"
+                  className="group rounded-2xl border border-slate-700/70 bg-linear-to-br from-slate-800/90 to-slate-900/90 p-5 transition hover:border-fuchsia-400/40 hover:shadow-lg hover:shadow-fuchsia-500/10"
                 >
                   <span className="rounded-md bg-fuchsia-500/15 px-2 py-0.5 text-xs font-bold text-fuchsia-300">
                     Q{i + 1}
@@ -193,10 +193,10 @@ const Interview = () => {
               {preparationPlan.map((day, i) => (
                 <article
                   key={i}
-                  className="rounded-2xl border border-slate-700/70 bg-gradient-to-br from-slate-800/90 to-slate-900/90 p-5"
+                  className="rounded-2xl border border-slate-700/70 bg-linear-to-br from-slate-800/90 to-slate-900/90 p-5"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="grid h-8 w-8 place-content-center rounded-full bg-gradient-to-r from-cyan-500 to-teal-500 text-xs font-bold text-slate-900">
+                    <div className="grid h-8 w-8 place-content-center rounded-full bg-linear-to-r from-cyan-500 to-teal-500 text-xs font-bold text-slate-900">
                       {day.day}
                     </div>
                     <h4 className="text-base font-bold text-slate-100">{day.focus}</h4>
