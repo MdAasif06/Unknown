@@ -1,79 +1,80 @@
 import React, { useState } from "react";
-
+import { useInterview } from "../hooks/useInterview.js";
 const Interview = () => {
   const [activeTab, setActiveTab] = useState("technical");
+  const {report}=useInterview()
 
   // ✅ SAMPLE DATA (API ki jagah use hoga)
-  const report = {
-    matchScore: 0.85,
+  // const report = {
+  //   matchScore: 0.85,
 
-    technicalQuestions: [
-      {
-        question:
-          "How do you handle authentication and authorization in your MERN stack applications?",
-        intention: "Assess knowledge of security best practices",
-        answer:
-          "I use JWT authentication with bcrypt.js for password hashing and role-based access control",
-      },
-      {
-        question:
-          "Can you explain the difference between RESTful APIs and GraphQL?",
-        intention: "Evaluate understanding of API design principles",
-        answer:
-          "RESTful APIs follow a request-response model, while GraphQL allows for more flexible querying",
-      },
-      {
-        question:
-          "How do you optimize MongoDB databases for performance and scalability?",
-        intention: "Assess knowledge of database optimization techniques",
-        answer:
-          "I use indexing, caching, and sharding to improve query performance and reduce latency",
-      },
-    ],
+  //   technicalQuestions: [
+  //     {
+  //       question:
+  //         "How do you handle authentication and authorization in your MERN stack applications?",
+  //       intention: "Assess knowledge of security best practices",
+  //       answer:
+  //         "I use JWT authentication with bcrypt.js for password hashing and role-based access control",
+  //     },
+  //     {
+  //       question:
+  //         "Can you explain the difference between RESTful APIs and GraphQL?",
+  //       intention: "Evaluate understanding of API design principles",
+  //       answer:
+  //         "RESTful APIs follow a request-response model, while GraphQL allows for more flexible querying",
+  //     },
+  //     {
+  //       question:
+  //         "How do you optimize MongoDB databases for performance and scalability?",
+  //       intention: "Assess knowledge of database optimization techniques",
+  //       answer:
+  //         "I use indexing, caching, and sharding to improve query performance and reduce latency",
+  //     },
+  //   ],
 
-    behavioralQuestions: [
-      {
-        question:
-          "Can you describe a project you worked on that involved collaborating with a team?",
-        intention: "Evaluate teamwork and communication skills",
-        answer:
-          "I worked on a project with Swecha, building a responsive UI using React and Tailwind",
-      },
-      {
-        question: "How do you handle debugging and troubleshooting issues?",
-        intention: "Assess problem-solving skills",
-        answer:
-          "I use Postman, Chrome DevTools, logs, and teamwork to debug issues",
-      },
-    ],
+  //   behavioralQuestions: [
+  //     {
+  //       question:
+  //         "Can you describe a project you worked on that involved collaborating with a team?",
+  //       intention: "Evaluate teamwork and communication skills",
+  //       answer:
+  //         "I worked on a project with Swecha, building a responsive UI using React and Tailwind",
+  //     },
+  //     {
+  //       question: "How do you handle debugging and troubleshooting issues?",
+  //       intention: "Assess problem-solving skills",
+  //       answer:
+  //         "I use Postman, Chrome DevTools, logs, and teamwork to debug issues",
+  //     },
+  //   ],
 
-    skillGaps: [
-      { skill: "TypeScript", severity: "medium" },
-      { skill: "CI/CD pipelines", severity: "low" },
-      { skill: "Cloud platforms (Azure)", severity: "low" },
-    ],
+  //   skillGaps: [
+  //     { skill: "TypeScript", severity: "medium" },
+  //     { skill: "CI/CD pipelines", severity: "low" },
+  //     { skill: "Cloud platforms (Azure)", severity: "low" },
+  //   ],
 
-    preparationPlan: [
-      {
-        day: 1,
-        focus: "Review of MERN stack fundamentals",
-        tasks: [
-          "Review React and Node.js documentation",
-          "Practice building a simple RESTful API",
-        ],
-      },
-      {
-        day: 2,
-        focus: "Security and authentication",
-        tasks: ["Study JWT authentication", "Implement login system"],
-      },
-      {
-        day: 3,
-        focus: "Database optimization",
-        tasks: ["Study MongoDB indexing", "Optimize queries"],
-      },
-    ],
-  };
+  //   preparationPlan: [
+  //     {
+  //       day: 1,
+  //       focus: "Review of MERN stack fundamentals",
+  //       tasks: [
+  //         "Review React and Node.js documentation",
+  //         "Practice building a simple RESTful API",
+  //       ],
+  //     },
+  //     {
+  //       day: 2,
+  //       focus: "Security and authentication",
+  //       tasks: ["Study JWT authentication", "Implement login system"],
+  //     },
+  //     {
+  //       day: 3,
+  //       focus: "Database optimization",
+  //       tasks: ["Study MongoDB indexing", "Optimize queries"],
+  //     },
+  //   ],
+  // };
 
   const {
     matchScore,

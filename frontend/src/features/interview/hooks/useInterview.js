@@ -9,7 +9,7 @@ export const useInterview=()=>{
     if(!context){
         throw new Error("useInterview must be used within an interviewProvider")
     }
-    const { loading, setLoading, report, setReport,reports,setReports }=context
+    const { loading, setLoading, report, setReport,reports,setReports }= context
 
     const generateReport=async({selfDescription,jobDescription,resumeFile})=>{
         setLoading(true)
