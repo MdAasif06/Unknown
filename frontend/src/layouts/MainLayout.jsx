@@ -9,7 +9,7 @@ const MainLayout = () => {
       <Navbar />
 
       <main className="flex-grow p-4 bg-gray-100">
-        <h1>Layout Working</h1>
+        {/* <h1>Layout Working</h1> */}
         <Outlet /> {/*  yaha page inject hoga */}
       </main>
 

@@ -5,14 +5,31 @@ const HomeInterview = () => {
   const { loading, generateReport } = useInterview();
   const [jobDescription, setJobDescription] = useState("");
   const [selfDescription, setSelfDescription] = useState("");
+  const [preparationDays, setPreparationDays] = useState(7);
   const resumeInputRef = useRef();
   const navigate=useNavigate()
 
 
   const handleGenerateReport=async()=>{
     const resumeFile=resumeInputRef.current.files[0];
-    const data=await generateReport({jobDescription,selfDescription,resumeFile })
+    const data=await generateReport({
+      jobDescription,
+      selfDescription,
+      resumeFile,
+      preparationDays,
+    })
     navigate(`/interview/${data._id}`)
+  }
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-linear-to-br from-indigo-100 via-white to-purple-100 flex items-center justify-center p-6">
+        <div className="w-full max-w-md bg-white/80 backdrop-blur-lg shadow-2xl rounded-3xl p-8 border border-gray-200 text-center">
+          <div className="mx-auto mb-5 h-14 w-14 rounded-full border-4 border-indigo-200 border-t-indigo-600 animate-spin"></div>
+          <h1 className="text-2xl font-bold text-gray-800">Generating Report...</h1>
+          <p className="mt-2 text-gray-600">Please wait while we prepare your interview insights.</p>
+        </div>
+      </main>
+    );
   }
 
 
@@ -70,8 +87,26 @@ const HomeInterview = () => {
             ></textarea>
           </div>
 
+          <div className="flex flex-col gap-2">
+            <label className="text-gray-600 font-medium">
+              Minimum Preparation Days
+            </label>
+            <input
+              type="number"
+              min={7}
+              max={60}
+              step={1}
+              value={preparationDays}
+              onChange={(e) => {
+                const nextValue = Number(e.target.value);
+                setPreparationDays(Number.isNaN(nextValue) ? 7 : Math.max(7, nextValue));
+              }}
+              className="w-full rounded-xl border border-gray-300 p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            />
+          </div>
+
           {/* Button */}
-          <button onClick={handleGenerateReport} className="mt-4 bg-linear-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-2xl font-semibold text-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
+          <button onClick={handleGenerateReport} className="cursor-pointer mt-4 bg-linear-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-2xl font-semibold text-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
             Generate Interview Report
           </button>
         </div>

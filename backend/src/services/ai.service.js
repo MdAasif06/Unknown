@@ -36,7 +36,9 @@ async function generateInterviewReport({
   resume,
   selfDescription,
   jobDescription,
+  preparationDays = 7,
 }) {
+  const minPreparationDays = Math.max(7, Number(preparationDays) || 7);
   // 🔹 Strong prompt (force JSON output)
   const prompt = `
 Generate an interview report.
@@ -44,11 +46,14 @@ Generate an interview report.
 Resume: ${resume}
 Self Description: ${selfDescription}
 Job Description: ${jobDescription}
+Minimum preparation days required by user: ${minPreparationDays}
 
 STRICT RULES:
 - Return ONLY valid JSON
 - No explanation, no text
 - No markdown
+- preparationPlan must include at least ${minPreparationDays} day entries
+- Every day must have practical and non-repeating tasks
 
 FORMAT:
 {
@@ -120,8 +125,31 @@ FORMAT:
     return null;
   }
 
+  const data = validated.data;
+  const plan = Array.isArray(data.preparationPlan) ? data.preparationPlan : [];
+
+  if (plan.length < minPreparationDays) {
+    const fallbackPlan = [...plan];
+    const lastFocus =
+      fallbackPlan[fallbackPlan.length - 1]?.focus || "Revision and mock interview";
+
+    for (let day = fallbackPlan.length + 1; day <= minPreparationDays; day += 1) {
+      fallbackPlan.push({
+        day,
+        focus: `${lastFocus} - Day ${day}`,
+        tasks: [
+          "Revise core role-specific concepts and notes",
+          "Practice 5 technical and 3 behavioral questions",
+          "Run one timed mock interview and review weak points",
+        ],
+      });
+    }
+
+    data.preparationPlan = fallbackPlan;
+  }
+
   // 🔹 final valid data
-  return validated.data;
+  return data;
 }
 
 export default generateInterviewReport;
