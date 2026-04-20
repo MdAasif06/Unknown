@@ -1,29 +1,29 @@
 import {generateInterviewReport,getInterviewReportById,getAllInterviewReports} from "../services/interview.api.js"
 import { useContext,useEffect } from "react"
 import {InterviewContext} from "../context/interview.context.jsx"
-// import {  useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 export const useInterview=()=>{
    
     const context =useContext(InterviewContext)
-//     const { interviewId } = useParams();
-//     useEffect(() => {
-//     if (interviewId) {
-//       getReportById(interviewId);
-//     }else{
-//         getReports()
-//     }
-//   }, [interviewId]);
+    const { interviewId } = useParams();
+    useEffect(() => {
+    if (interviewId) {
+      getReportById(interviewId);
+    }else{
+        getReports()
+    }
+  }, [interviewId]);
 
     if(!context){
         throw new Error("useInterview must be used within an interviewProvider")
     }
     const { loading, setLoading, report, setReport,reports,setReports }= context
 
-    const generateReport=async({selfDescription,jobDescription,resumeFile,preparationDays})=>{
+    const generateReport=async({selfDescription,jobDescription,resumeFile})=>{
         setLoading(true)
         let response = null
         try {
-            response = await generateInterviewReport({jobDescription,selfDescription,resumeFile,preparationDays})
+            response = await generateInterviewReport({jobDescription,selfDescription,resumeFile})
             setReport(response.interviewReport)
             
         } catch (error) {

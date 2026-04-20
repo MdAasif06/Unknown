@@ -29,13 +29,6 @@ import { string } from "zod";
  *       enum:["low","medium","high"]
  * }
  * }]
- *
- * - prepation plan :
- *         [{
- *        day:number,
- *        focus:string,
- *        task:[string]
- *         }]
  */
 const technicalQuestionSchema = new mongoose.Schema(
   {
@@ -88,20 +81,23 @@ const skillGapSchema = new mongoose.Schema(
   { _id: false },
 );
 
-const prepationPlanSchema = new mongoose.Schema({
-  day: {
-    type: Number,
-    required: [true, "Day is required"],
+const preparationPlanSchema = new mongoose.Schema(
+  {
+    day: {
+      type: Number,
+      required: [true, "Day is required"],
+    },
+    focus: {
+      type: String,
+      required: [true, "Focus is required"],
+    },
+    tasks: {
+      type: [String],
+      required: [true, "Tasks are required"],
+    },
   },
-  focus: {
-    type: String,
-    required: [true, "focus is required"],
-  },
-  tasks: {
-    type: [String],
-    required: [true, "task is required"],
-  },
-});
+  { _id: false },
+);
 
 const interviewReportSchema = new mongoose.Schema(
   {
@@ -123,7 +119,7 @@ const interviewReportSchema = new mongoose.Schema(
     technicalQuestions: [technicalQuestionSchema],
     behavioralQuestions: [behavioralQuestionsSchema],
     skillGaps: [skillGapSchema],
-    preparationPlan: [prepationPlanSchema],
+    preparationPlan: [preparationPlanSchema],
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
